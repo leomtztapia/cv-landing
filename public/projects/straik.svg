@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f5f5f5"/>
+  <rect width="400" height="300" fill="none" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Bowling Robot -->
+  <circle cx="200" cy="120" r="40" fill="#FF6B6B"/>
+  <rect x="180" y="160" width="40" height="80" fill="#FF6B6B"/>
+  <circle cx="190" cy="200" r="12" fill="#333"/>
+  <circle cx="210" cy="200" r="12" fill="#333"/>
+  <circle cx="180" cy="170" r="8" fill="#333"/>
+  <circle cx="220" cy="170" r="8" fill="#333"/>
+  <ellipse cx="200" cy="90" rx="30" ry="35" fill="#333"/>
+  <circle cx="185" cy="75" r="8" fill="#fff"/>
+  <circle cx="215" cy="75" r="8" fill="#fff"/>
+
+  <!-- Bowling Ball -->
+  <circle cx="100" cy="200" r="25" fill="#333"/>
+  <circle cx="95" cy="195" r="3" fill="#FF6B6B"/>
+  <circle cx="105" cy="195" r="3" fill="#FF6B6B"/>
+  <circle cx="100" cy="210" r="3" fill="#FF6B6B"/>
+
+  <!-- Text -->
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">Straik App</text>
+</svg>
