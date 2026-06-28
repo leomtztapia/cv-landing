@@ -2,9 +2,12 @@
 
 import Image from 'next/image';
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
+  const [isHovering, setIsHovering] = useState(false);
+
   const links = [
     {
       label: 'CV',
@@ -23,22 +26,56 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      {/* SVG Filter for noise/distortion */}
+      <svg style={{ display: 'none' }} width="0" height="0">
+        <defs>
+          <filter id="noiseFilter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="4"
+              result="noise"
+              seed="2"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="8"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+
       <div className={styles.container}>
         {/* Left side - Portrait */}
         <motion.div
           className={styles.portraitSection}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <Image
-            src="/portrait.jpg"
-            alt="Leonardo Martínez"
-            width={400}
-            height={500}
-            priority
-            className={styles.portrait}
-          />
+          <motion.div
+            className={styles.portraitWrapper}
+            animate={
+              isHovering
+                ? { scale: 1.02, rotateZ: 0.5 }
+                : { scale: 1, rotateZ: 0 }
+            }
+            transition={{ duration: 0.3 }}
+          >
+            <Image
+              src="/portrait.jpg"
+              alt="Leonardo Martínez"
+              width={400}
+              height={500}
+              priority
+              className={isHovering ? styles.portraitDistorted : styles.portrait}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Right side - Content */}
@@ -48,10 +85,19 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
         >
-          <header className={styles.header}>
-            <h1>LEONARDO</h1>
-            <h1>MARTÍNEZ</h1>
-          </header>
+          <motion.header
+            className={styles.header}
+            animate={
+              isHovering
+                ? { skewX: -2, opacity: 0.9 }
+                : { skewX: 0, opacity: 1 }
+            }
+            transition={{ duration: 0.3 }}
+          >
+            <h1>leo</h1>
+            <h1>mtz</h1>
+            <h1>tapia</h1>
+          </motion.header>
 
           <nav className={styles.nav}>
             {links.map((link, index) => (
