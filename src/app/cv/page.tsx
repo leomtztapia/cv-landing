@@ -11,64 +11,10 @@ export default function CVPage() {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    const hideElements = () => {
+    const addHoverEffects = () => {
       try {
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
         if (!doc) return;
-
-        // Inyectar CSS para fondo blanco y efectos de hover
-        const style = doc.createElement('style');
-        style.textContent = `
-          /* Cambiar fondo a blanco agresivamente */
-          * {
-            background-color: initial !important;
-          }
-
-          body, html {
-            background: #ffffff !important;
-            background-color: #ffffff !important;
-          }
-
-          body * {
-            background: transparent !important;
-          }
-
-          /* Efectos de hover en texto */
-          p, span, div, a, h1, h2, h3, h4, h5, h6 {
-            transition: all 0.3s ease !important;
-          }
-
-          p:hover, span:hover, div:hover, a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
-            letter-spacing: 0.5px !important;
-          }
-
-          /* Ocultar botón de descarga y elementos innecesarios */
-          button[aria-label*="download"],
-          button[aria-label*="Descargar"],
-          button[aria-label*="PDF"],
-          a[href*="download"],
-          a[href*="pdf"],
-          a[href*="PDF"],
-          [class*="download"],
-          [class*="Download"],
-          [class*="descargar"],
-          [class*="Descargar"],
-          svg[aria-label*="download"],
-          svg[aria-label*="Download"],
-          *:has(> ::-webkit-external-text-disabled) {
-            display: none !important;
-          }
-
-          /* Ocultar cualquier elemento que contenga "DESCARGAR" o "PDF" */
-          *:has(> button:contains("DESCARGAR")),
-          *:has(> button:contains("PDF")),
-          *:has(> a:contains("DESCARGAR")),
-          *:has(> a:contains("PDF")) {
-            display: none !important;
-          }
-        `;
-        doc.head.appendChild(style);
 
         // Inyectar SVG filter para ruido en hover
         const svg = doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -105,14 +51,11 @@ export default function CVPage() {
 
           el.addEventListener('mouseleave', () => {
             (el as HTMLElement).style.filter = 'none';
-            const currentWeight = window.getComputedStyle(el).fontWeight;
-            if (currentWeight === 'bold') {
-              (el as HTMLElement).style.fontWeight = 'inherit';
-            }
+            (el as HTMLElement).style.fontWeight = 'inherit';
           });
         });
 
-        // Buscar y ocultar elementos con texto "DESCARGAR" o "PDF"
+        // Buscar y ocultar elementos con texto "DESCARGAR"
         const allElements = doc.querySelectorAll('*');
         allElements.forEach((el) => {
           const text = el.textContent || '';
@@ -124,47 +67,19 @@ export default function CVPage() {
             (button as HTMLElement).style.display = 'none';
           }
         });
-
-        // Usar MutationObserver para aplicar estilos continuamente
-        if (doc) {
-          const observer = new MutationObserver(() => {
-            // Aplicar estilos cada vez que el DOM cambia
-            const body = doc.querySelector('body');
-            if (body) {
-              body.style.background = '#ffffff !important';
-              body.style.backgroundColor = '#ffffff !important';
-            }
-
-            const html = doc.querySelector('html');
-            if (html) {
-              html.style.background = '#ffffff !important';
-              html.style.backgroundColor = '#ffffff !important';
-            }
-          });
-
-          observer.observe(doc.body || doc.documentElement, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-          });
-        }
       } catch (e) {
-        // Los iframes de origen diferente no pueden ser accedidos
         console.log('No se puede acceder al contenido del iframe');
       }
     };
 
-    // Intentar aplicar estilos lo más rápido posible
-    setTimeout(hideElements, 50);
-    setTimeout(hideElements, 150);
-    setTimeout(hideElements, 300);
-    setTimeout(hideElements, 600);
+    // Agregar efectos cuando el iframe carga
+    iframe.addEventListener('load', addHoverEffects);
 
-    // También cuando el iframe carga
-    iframe.addEventListener('load', hideElements);
+    // Intentar también al poco tiempo
+    setTimeout(addHoverEffects, 500);
 
     return () => {
-      iframe.removeEventListener('load', hideElements);
+      iframe.removeEventListener('load', addHoverEffects);
     };
   }, []);
 
@@ -175,10 +90,10 @@ export default function CVPage() {
       </Link>
 
       <iframe
-        ref={iframeRef}
         src="/cv-leo-web.html"
         title="CV Leonardo Martínez"
         className={styles.cvIframe}
+        ref={iframeRef}
       />
     </main>
   );
