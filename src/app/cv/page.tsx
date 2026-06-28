@@ -16,12 +16,31 @@ export default function CVPage() {
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
         if (!doc) return;
 
-        // Inyectar CSS para ocultar elementos y cambiar fondo
+        // Inyectar CSS para fondo blanco y efectos de hover
         const style = doc.createElement('style');
         style.textContent = `
-          /* Cambiar fondo a blanco */
+          /* Cambiar fondo a blanco agresivamente */
+          * {
+            background-color: initial !important;
+          }
+
           body, html {
             background: #ffffff !important;
+            background-color: #ffffff !important;
+          }
+
+          body * {
+            background: transparent !important;
+          }
+
+          /* Efectos de hover en texto */
+          p, span, div, a, h1, h2, h3, h4, h5, h6 {
+            transition: all 0.3s ease !important;
+          }
+
+          p:hover, span:hover, div:hover, a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
+            letter-spacing: 0.5px !important;
           }
 
           /* Ocultar botón de descarga y elementos innecesarios */
@@ -51,6 +70,48 @@ export default function CVPage() {
         `;
         doc.head.appendChild(style);
 
+        // Inyectar SVG filter para ruido en hover
+        const svg = doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('style', 'display: none;');
+        svg.innerHTML = `
+          <defs>
+            <filter id="cvNoiseFilter">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.7"
+                numOctaves="3"
+                result="noise"
+                seed="1"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale="3"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+        `;
+        doc.body.appendChild(svg);
+
+        // Agregar efectos de hover a elementos de texto
+        const textElements = doc.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6, a');
+        textElements.forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            (el as HTMLElement).style.filter = 'url(#cvNoiseFilter) brightness(0.95)';
+            (el as HTMLElement).style.fontWeight = 'bold';
+          });
+
+          el.addEventListener('mouseleave', () => {
+            (el as HTMLElement).style.filter = 'none';
+            const currentWeight = window.getComputedStyle(el).fontWeight;
+            if (currentWeight === 'bold') {
+              (el as HTMLElement).style.fontWeight = 'inherit';
+            }
+          });
+        });
+
         // Buscar y ocultar elementos con texto "DESCARGAR" o "PDF"
         const allElements = doc.querySelectorAll('*');
         allElements.forEach((el) => {
@@ -75,6 +136,7 @@ export default function CVPage() {
     // Intentar inmediatamente también
     setTimeout(hideElements, 500);
     setTimeout(hideElements, 1500);
+    setTimeout(hideElements, 2500);
 
     return () => {
       iframe.removeEventListener('load', hideElements);
