@@ -124,19 +124,44 @@ export default function CVPage() {
             (button as HTMLElement).style.display = 'none';
           }
         });
+
+        // Usar MutationObserver para aplicar estilos continuamente
+        if (doc) {
+          const observer = new MutationObserver(() => {
+            // Aplicar estilos cada vez que el DOM cambia
+            const body = doc.querySelector('body');
+            if (body) {
+              body.style.background = '#ffffff !important';
+              body.style.backgroundColor = '#ffffff !important';
+            }
+
+            const html = doc.querySelector('html');
+            if (html) {
+              html.style.background = '#ffffff !important';
+              html.style.backgroundColor = '#ffffff !important';
+            }
+          });
+
+          observer.observe(doc.body || doc.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+          });
+        }
       } catch (e) {
         // Los iframes de origen diferente no pueden ser accedidos
         console.log('No se puede acceder al contenido del iframe');
       }
     };
 
-    // Intentar ocultar elementos cuando el iframe carga
-    iframe.addEventListener('load', hideElements);
+    // Intentar aplicar estilos lo más rápido posible
+    setTimeout(hideElements, 50);
+    setTimeout(hideElements, 150);
+    setTimeout(hideElements, 300);
+    setTimeout(hideElements, 600);
 
-    // Intentar inmediatamente también
-    setTimeout(hideElements, 500);
-    setTimeout(hideElements, 1500);
-    setTimeout(hideElements, 2500);
+    // También cuando el iframe carga
+    iframe.addEventListener('load', hideElements);
 
     return () => {
       iframe.removeEventListener('load', hideElements);
