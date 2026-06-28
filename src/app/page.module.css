@@ -55,20 +55,15 @@
   gap: 4rem;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .header h1 {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 4.5rem;
   font-weight: 700;
   margin: 0;
-  line-height: 0.9;
+  line-height: 1;
   letter-spacing: -2px;
   color: #000000;
+  white-space: nowrap;
 }
 
 .nav {

@@ -60,12 +60,6 @@ export default function Home() {
         >
           <motion.div
             className={styles.portraitWrapper}
-            animate={
-              isHovering
-                ? { scale: 1.02, rotateZ: 0.5 }
-                : { scale: 1, rotateZ: 0 }
-            }
-            transition={{ duration: 0.3 }}
           >
             <Image
               src="/portrait.jpg"
@@ -87,16 +81,10 @@ export default function Home() {
         >
           <motion.header
             className={styles.header}
-            animate={
-              isHovering
-                ? { skewX: -2, opacity: 0.9 }
-                : { skewX: 0, opacity: 1 }
-            }
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
           >
-            <h1>leo</h1>
-            <h1>mtz</h1>
-            <h1>tapia</h1>
+            <h1>leo/mtz/tapia</h1>
           </motion.header>
 
           <nav className={styles.nav}>
