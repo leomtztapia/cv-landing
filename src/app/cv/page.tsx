@@ -86,7 +86,7 @@ export default function CVPage() {
   return (
     <main className={styles.main}>
       <Link href="/" className={styles.backBtn}>
-        ← Volver
+        [← volver]
       </Link>
 
       <iframe

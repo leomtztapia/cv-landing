@@ -100,7 +100,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 whileHover={{ x: 10, transition: { duration: 0.2 } }}
               >
-                [{link.label}]
+                [{link.label.toLowerCase()}]
               </motion.a>
             ))}
           </nav>
