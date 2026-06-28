@@ -4,21 +4,18 @@ import styles from './page.module.css';
 export default function Home() {
   const options = [
     {
-      title: 'Portafolio Foto & Video',
-      description: 'Trabajos de fotografía y videografía',
+      title: 'CV',
+      href: '/cv',
+      icon: '📄',
+    },
+    {
+      title: 'Foto y Video',
       href: 'https://www.leomtztapia.com',
       icon: '📸',
       external: true,
     },
     {
-      title: 'Curriculum Vitae',
-      description: 'Experiencia, educación y habilidades',
-      href: '/cv',
-      icon: '📄',
-    },
-    {
-      title: 'Portafolio Web',
-      description: 'Proyectos de diseño y desarrollo web',
+      title: 'Web Design',
       href: '/portafolio-web',
       icon: '🌐',
     },
@@ -43,8 +40,6 @@ export default function Home() {
             >
               <div className={styles.icon}>{option.icon}</div>
               <h2>{option.title}</h2>
-              <p>{option.description}</p>
-              <span className={styles.arrow}>→</span>
             </a>
           ))}
         </nav>

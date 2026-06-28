@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +13,7 @@ html {
 body {
   background: #e8e4dc;
   color: #000000;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Barlow', sans-serif;
   line-height: 1.6;
   letter-spacing: 0px;
 }
@@ -30,6 +32,7 @@ button {
 
 /* Typography */
 h1 {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -37,6 +40,7 @@ h1 {
 }
 
 h2 {
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;

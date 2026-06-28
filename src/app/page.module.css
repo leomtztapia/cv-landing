@@ -41,58 +41,44 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
   margin-bottom: 6rem;
 }
 
 .card {
-  padding: 2.5rem;
-  background: #ffffff;
-  border: 2px solid #000000;
+  padding: 2rem 1.5rem;
+  background: transparent;
+  border: none;
   border-radius: 0;
   transition: none;
   position: relative;
   overflow: visible;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   cursor: pointer;
 }
 
-.card:hover {
-  background: #000000;
-  color: #ffffff;
+.card:hover h2 {
+  text-decoration: underline;
 }
 
 .icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  display: block;
 }
 
 .card h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  margin-bottom: 0;
   font-weight: 700;
+  letter-spacing: -0.5px;
+  transition: text-decoration 0.2s ease;
 }
 
-.card p {
-  flex: 1;
-  font-size: 0.95rem;
-  color: inherit;
-  margin-bottom: 1.5rem;
-}
-
-.arrow {
-  font-size: 1.25rem;
-  color: inherit;
-  transition: none;
-  align-self: flex-start;
-}
-
-.card:hover .arrow {
-  transform: none;
-  color: inherit;
-}
 
 .footer {
   text-align: left;
@@ -124,10 +110,6 @@
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .card {
-    padding: 2rem;
+    gap: 2.5rem;
   }
 }
