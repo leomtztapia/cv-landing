@@ -18,66 +18,50 @@
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 4rem;
-  animation: fadeIn 0.6s ease;
+  text-align: left;
+  margin-bottom: 6rem;
+  border-bottom: 3px solid #000000;
+  padding-bottom: 3rem;
 }
 
 .header h1 {
   font-size: 3.5rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
 }
 
 .header p {
-  font-size: 1.5rem;
-  color: #999;
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 1rem;
+  color: #000000;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 3rem;
+  margin-bottom: 6rem;
 }
 
 .card {
   padding: 2.5rem;
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 0;
+  transition: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   cursor: pointer;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #1a1a1a;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
 .card:hover {
-  border-color: #1a1a1a;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.card:hover::before {
-  transform: scaleX(1);
+  background: #000000;
+  color: #ffffff;
 }
 
 .icon {
@@ -88,48 +72,38 @@
 .card h2 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .card p {
   flex: 1;
   font-size: 0.95rem;
-  color: #888;
+  color: inherit;
   margin-bottom: 1.5rem;
 }
 
 .arrow {
   font-size: 1.25rem;
-  color: #999;
-  transition: transform 0.3s ease;
+  color: inherit;
+  transition: none;
   align-self: flex-start;
 }
 
 .card:hover .arrow {
-  transform: translateX(4px);
-  color: #1a1a1a;
+  transform: none;
+  color: inherit;
 }
 
 .footer {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid #e8e8e8;
+  text-align: left;
+  padding-top: 3rem;
+  border-top: 3px solid #000000;
   width: 100%;
   max-width: 1000px;
-  color: #999;
+  color: #000000;
   font-size: 0.9rem;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @media (max-width: 768px) {
   .main {
