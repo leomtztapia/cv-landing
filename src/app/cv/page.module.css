@@ -1,124 +1,58 @@
 .main {
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  background: #faf9f5;
+  background: #ffffff;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
 
-.header {
-  max-width: 1200px;
-  margin: 0 auto 2rem;
-  width: 100%;
-}
-
-.backLink {
-  display: inline-block;
-  color: #666;
+.backBtn {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000000;
   font-size: 0.95rem;
-  margin-bottom: 1rem;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0;
+  border: 1px solid #000000;
 }
 
-.backLink:hover {
-  color: #1a1a1a;
-}
-
-.header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.header p {
-  font-size: 1rem;
-  color: #999;
-}
-
-.cvContainer {
-  flex: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.loader {
-  padding: 2rem;
-  text-align: center;
-  color: #999;
-  font-size: 1rem;
+.backBtn:hover {
+  opacity: 0.7;
 }
 
 .cvIframe {
   flex: 1;
   width: 100%;
-  min-height: 600px;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  background: #fff;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  colorScheme: light;
 }
 
-.downloadSection {
-  text-align: center;
-  padding: 2rem;
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-}
-
-.downloadSection p {
-  margin-bottom: 1rem;
-  color: #666;
-}
-
-.downloadBtn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: #1a1a1a;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  transition: opacity 0.2s ease;
-}
-
-.downloadBtn:hover {
-  opacity: 0.9;
-}
-
-.footer {
-  max-width: 1200px;
-  margin: 2rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid #e8e8e8;
-  width: 100%;
-  text-align: center;
-}
-
-.footer a {
-  color: #666;
-  transition: color 0.2s ease;
-}
-
-.footer a:hover {
-  color: #1a1a1a;
+/* Hide download button and any UI elements */
+.cvIframe::after {
+  content: '';
 }
 
 @media (max-width: 768px) {
-  .main {
-    padding: 1rem;
-  }
-
-  .header h1 {
-    font-size: 1.75rem;
-  }
-
-  .cvIframe {
-    min-height: 400px;
-  }
-
-  .downloadSection {
-    padding: 1.5rem;
+  .backBtn {
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
 }
