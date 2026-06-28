@@ -33,14 +33,14 @@ const projects = [
     name: 'Ale Picazarri',
     description: 'Creative Portfolio',
     image: 'https://res.cloudinary.com/dw6lxbhvu/image/upload/v1782613402/ale_re0cmz.png',
-    url: 'https://www.alepicazarri.pages.dev',
+    url: 'https://alepicazarri.pages.dev',
   },
   {
     id: 5,
     name: 'Dr. Valdez',
     description: 'Medical Professional Site',
     image: 'https://res.cloudinary.com/dw6lxbhvu/image/upload/v1782613403/dr_aenzfd.png',
-    url: 'https://www.drvaldez.vercel.app',
+    url: 'https://drvaldez.vercel.app',
   },
 ];
 
